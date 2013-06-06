@@ -200,8 +200,6 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
 /**
  Creates and initializes an `MMDrawerController` object with the specified center view controller, left drawer view controller, and right drawer view controller. 
  
- This is the designated initializer.
- 
  @param centerViewController The center view controller. This argument must not be `nil`.
  @param leftDrawerViewController The left drawer view controller.
  @param rightDrawerViewController The right drawer controller.
@@ -362,5 +360,18 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
  @param drawerVisualStateBlock A block object to be called that allows the implementer to update visual state properties on the drawer. `percentVisible` represents the amount of the drawer space that is current visible, with drawer space being defined as the edge of the screen to the maxmimum drawer width. Note that you do have access to the drawerController, which will allow you to update things like the anchor point of the side drawer layer.
  */
 -(void)setDrawerVisualStateBlock:(void(^)(MMDrawerController * drawerController, MMDrawerSide drawerSide, CGFloat percentVisible))drawerVisualStateBlock;
+
+///---------------------------------------
+/// @name Gesture Completion Handling
+///---------------------------------------
+
+/**
+ Sets a callback to be called when a gesture has been completed.
+ 
+ This block is called when a gesture action has been completed. You can query the `openSide` of the `drawerController` to determine what the new state of the drawer is.
+ 
+ @param gestureCompletionBlock A block object to be called that allows the implementer be notified when a gesture action has been completed.
+ */
+-(void)setGestureCompletionBlock:(void(^)(MMDrawerController * drawerController, UIGestureRecognizer * gesture))gestureCompletionBlock;
 
 @end
